@@ -87,6 +87,8 @@ ______           _         _
               context
             );
 
+            console.log(meta.args, routeArgs);
+
             // call controller action here. Provide arguments injected via parameter
             // decorator function metadata
             const response: any = await instance[route.methodName as string](...routeArgs);
@@ -188,7 +190,11 @@ ______           _         _
     return filteredArguments.map((arg: RouteArgument): any => {
       switch (arg.type) {
         case ArgsType.PARAM:
-          return params[arg.key];
+          if (arg.key === undefined) {
+            return params;
+          } else {
+            return params[arg.key];
+          }
         case ArgsType.BODY:
           if (arg.key === undefined) {
             return body.value;
@@ -202,7 +208,11 @@ ______           _         _
             return query[arg.key];
           }
         case ArgsType.HEADER:
-          return headers[arg.key];
+          if (arg.key === undefined) {
+            return headers;
+          } else {
+            return headers[arg.key];
+          }
         case ArgsType.CONTEXT:
           return context;
         case ArgsType.REQUEST:
