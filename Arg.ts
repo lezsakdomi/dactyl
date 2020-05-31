@@ -25,7 +25,7 @@ export const defineParameterDecorator = (
 
     meta.args.push({
       type: argType,
-      key: paramKey || "",
+      key: paramKey,
       index: parameterIndex,
       argFor: propertyKey,
     });
@@ -41,7 +41,7 @@ export const defineParameterDecorator = (
  * public controllerAction(@Param('id') id: number): any {}
  * ```
  */
-export function Param(paramKey: string): ParameterDecorator {
+export function Param(paramKey?: string): ParameterDecorator {
   return defineParameterDecorator(ArgsType.PARAM, paramKey);
 }
 /**
@@ -80,7 +80,7 @@ export function Query(queryKey?: string): ParameterDecorator {
  * public controllerAction(@Header('content-type') contentType: string): any { }
  * ```
  */
-export function Header(headerKey: string): ParameterDecorator {
+export function Header(headerKey?: string): ParameterDecorator {
   return defineParameterDecorator(ArgsType.HEADER, headerKey);
 }
 /**
