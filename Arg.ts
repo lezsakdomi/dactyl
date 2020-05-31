@@ -51,8 +51,11 @@ export function Param(paramKey: string): ParameterDecorator {
  * ```ts
  * public controllerAction(@Body('name') name: string): any { }
  * ```
+ *
+ * When bodyKey is not specified, it maps the whole body, else the specified
+ * field
  */
-export function Body(bodyKey: string): ParameterDecorator {
+export function Body(bodyKey?: string): ParameterDecorator {
   return defineParameterDecorator(ArgsType.BODY, bodyKey);
 }
 /**
@@ -62,8 +65,11 @@ export function Body(bodyKey: string): ParameterDecorator {
  * ```ts
  * public controllerAction(@Query('orderBy') orderBy: string): any { }
  * ```
+ *
+ * When queryKey is not specified, it maps the whole body, else the specified
+ * field
  */
-export function Query(queryKey: string): ParameterDecorator {
+export function Query(queryKey?: string): ParameterDecorator {
   return defineParameterDecorator(ArgsType.QUERY, queryKey);
 }
 /**

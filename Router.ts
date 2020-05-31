@@ -190,9 +190,17 @@ ______           _         _
         case ArgsType.PARAM:
           return params[arg.key];
         case ArgsType.BODY:
-          return body.value[arg.key];
+          if (arg.key === undefined) {
+            return body.value;
+          } else {
+            return body.value[arg.key];
+          }
         case ArgsType.QUERY:
-          return query[arg.key];
+          if (arg.key === undefined) {
+            return query;
+          } else {
+            return query[arg.key];
+          }
         case ArgsType.HEADER:
           return headers[arg.key];
         case ArgsType.CONTEXT:
