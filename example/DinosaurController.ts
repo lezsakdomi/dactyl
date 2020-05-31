@@ -24,7 +24,9 @@ import {
 class DinosaurController {
   @Get("/")
   @HttpStatus(200)
-  getDinosaurs(@Query("orderBy") orderBy: any, @Query("sort") sort: any) {
+  getDinosaurs(@Query() query: {[key: string]: any}) {
+    const {orderBy, sort} = query;
+
     const dinosaurs: any[] = [
       { name: "Tyrannosaurus Rex", period: "Maastrichtian" },
       { name: "Velociraptor", period: "Cretaceous" },
